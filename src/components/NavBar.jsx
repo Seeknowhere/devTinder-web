@@ -1,7 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
@@ -26,8 +25,8 @@ const NavBar = () => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl">
-          DevTinder
+        <Link to="/" className="btn btn-ghost text-2xl">
+          <span className=" text-rose-400">Dev</span><span>Tinder</span>
         </Link>
       </div>
 
@@ -73,7 +72,7 @@ const NavBar = () => {
         ) : (
           location.pathname !== "/login" &&
           (
-          <div className="btn">
+          <div className="btn btn-md text-white rounded-3xl bg-rose-500">
             <Link to="/login">Sign in</Link>
           </div>
           )
