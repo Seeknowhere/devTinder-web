@@ -4,10 +4,10 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import UserCard from "./userCard";
 import { addUser } from "../utils/userSlice";
-const EditProfile = () => {
+const EditProfile = ({closeEdit}) => {
   const userProfile = useSelector((store) => store.user);
   const dispatch = useDispatch();
-
+  const [error, setError] = useState("");
   const { firstName, lastName, age, gender, photoUrl, about, skills } =
     userProfile.data;
 
@@ -28,6 +28,7 @@ const EditProfile = () => {
       ...prev,
       [field]: value,
     }));
+    
   };
     const handleDirectChange = (field,value) => {
     setFormData((prev) => ({
@@ -36,6 +37,7 @@ const EditProfile = () => {
     }));
   };
   const handleSave = async () => {
+    setError("");
     try {
       const res = await axios.patch(BASE_URL + "/profile/edit", formData, {
         withCredentials: true,
@@ -43,8 +45,9 @@ const EditProfile = () => {
       console.log(res);
       dispatch(addUser(res.data));
       alert("Profile Updated");
+      closeEdit();
     } catch (err) {
-      console.error(err);
+      setError(err?.response?.data);
       alert("Update Failed");
     }
   };
@@ -163,10 +166,22 @@ const EditProfile = () => {
             </div>
           ))}
         </div>
-        <button className="btn btn-primary mt-5" onClick={handleSave}>
+        <div><p className="text-red-500">{error}</p></div>
+         <button className="btn bg-gray-600 mt-5" onClick={closeEdit}>
+          Cancel
+        </button>
+        <button className="btn btn-primary " onClick={handleSave}>
           Save Changes
         </button>
       </fieldset>
+      <UserCard user={{
+        firstName,
+        lastName,
+        age,
+        gender,
+        photoUrl,
+        about
+      }}/>
     </div>
   );
 };

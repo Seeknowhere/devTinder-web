@@ -29,7 +29,7 @@ const Feed = () => {
     setIndex((prev) => prev + 1)
   }
   return feed && (
-    <div className="flex justify-center my-10">
+    <div className="flex justify-center " >
         <UserCard user={feed.data[index]} onNext={handleNextUser}/>
     </div>
   );

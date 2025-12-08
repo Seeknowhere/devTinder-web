@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import axios from "axios";
 import { BASE_URL } from "./utils/constants";
 import { addUser } from "./utils/userSlice";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
+         <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer/>
     </>

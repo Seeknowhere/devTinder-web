@@ -26,7 +26,8 @@ const NavBar = () => {
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
         <Link to="/" className="btn btn-ghost text-2xl">
-          <span className=" text-rose-400">Dev</span><span>Tinder</span>
+         <span className=" text-rose-400">Dev</span><span>Tinder</span>
+
         </Link>
       </div>
 

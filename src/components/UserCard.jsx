@@ -1,14 +1,18 @@
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
 const UserCard = ({user, onNext}) => {
     const {firstName, lastName, photoUrl, age,gender,about} = user;
 
-    const handleLike = () => {
+    const handleLike = async() => {
+
+        await axios.post(BASE_URL + `/swipe/like/${user._id}`)
         onNext()
     }
     const handlePass = () => {
-        onNext()
+        onNext() 
     }
   return (
-    <div className="card bg-base-200 w-96  h-[500px] shadow-sm rounded-2xl">
+    <div className="card bg-base-200 w-96 h-[500px] sm:h- shadow-sm rounded-2xl">
       <figure className="">
         <img
         className="w-96 h-[600px]"

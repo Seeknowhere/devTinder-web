@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
 
-const ViewProfile = () => {
+const ViewProfile = ({startEdit}) => {
   const user = useSelector((store) => store.user);
 
   if (!user?.data) return null;
 
   const { firstName, lastName, age, gender, about, photoUrl } = user.data;
-
+  
   return (
     <div className="min-h-screen bg-[#14151a] text-white flex justify-center p-4 md:p-8 font-sans">
       
@@ -41,7 +41,7 @@ const ViewProfile = () => {
 
               {/* User Info */}
               <div className="flex-1 mt-2 md:mt-0 pb-2">
-                <h1 className="text-3xl font-bold text-white">Aelin Galathynius</h1>
+                <h1 className="text-3xl font-bold text-white">{firstName + " " + lastName}</h1>
                 <p className="text-gray-400 font-medium">Senior Front-End Developer</p>
                 
                 {/* Meta Details (Location/Gender) */}
@@ -57,14 +57,14 @@ const ViewProfile = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
-                    <span>Female</span>
+                    <span>{gender}</span>
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0 md:mb-4">
-                <button className="flex-1 md:flex-none bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                <button onClick={startEdit} className="flex-1 md:flex-none bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white px-6 py-2 rounded-lg font-medium transition-colors">
                   Edit Profile
                 </button>
                 {/* Scissors Icon */}
@@ -98,7 +98,7 @@ const ViewProfile = () => {
                         </svg>
                     </div>
                     <p className="text-gray-300 leading-relaxed">
-                        Love to read books during my spare time
+                        {about}
                     </p>
                 </div>
             </div>
