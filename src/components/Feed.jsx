@@ -11,7 +11,7 @@ const Feed = () => {
   
   const dispatch = useDispatch();
   const getFeed = async () => {
-    if (feed !== null) return;
+   
     try {
       const res = await axios.get(BASE_URL + "/user/feed", {
         withCredentials: true,
@@ -28,6 +28,8 @@ const Feed = () => {
   const handleNextUser = () => {
     setIndex((prev) => prev + 1)
   }
+  if(!feed)return;
+  if(feed.length === 0) return <div>No new users found!</div>
   return feed && (
     <div className="flex justify-center " >
         <UserCard user={feed.data[index]} onNext={handleNextUser}/>

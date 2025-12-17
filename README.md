@@ -19,11 +19,17 @@ If you are developing a production application, we recommend using TypeScript wi
 
 
 /* sample accounts */
+email:caleana@assassins.com
+pw: Aelin!123
+
 email: bree@gmail.com
 password: Bree!123
 
 "emailId": "chaol@adarlan.com",
-password": "Dorianismyking!1234"
+password": "Chaol!123"
 
 email: emily@gilmore.com
 password: DAR!1234
+
+lynette@scavos.com
+Lynette!123

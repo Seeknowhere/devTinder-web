@@ -1,12 +1,26 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-const UserCard = ({user, onNext}) => {
+import { useDispatch } from "react-redux";
+import { addSingleMatch } from "../utils/matchesSlice";
+
+const UserCard = ({user, onNext, hideButtons}) => {
+    if(!user){
+      return null;
+    }
     const {firstName, lastName, photoUrl, age,gender,about} = user;
-
+    const dispatch = useDispatch();
     const handleLike = async() => {
+        try {
+          const res = await axios.post(BASE_URL + `/swipe/like/${user._id}`,{}, {withCredentials:true})
+          console.log(res);
+          if(res.data.isMatch){
+            dispatch(addSingleMatch(user));
+          }
 
-        await axios.post(BASE_URL + `/swipe/like/${user._id}`)
-        onNext()
+          onNext()
+        }catch(err){
+          console.error(err.message)
+        }  
     }
     const handlePass = () => {
         onNext() 
@@ -26,10 +40,10 @@ const UserCard = ({user, onNext}) => {
           {age  + (gender === "male" ?"M":gender ==="female"?"F":"NB")}
         </p>
         <p>{about}</p>
-        <div className="card-actions justify-end">
+        {!hideButtons && (<div className="card-actions justify-end">
           <button className="btn bg-rose-500" onClick={handlePass}>Pass</button>
           <button className="btn bg-green-400" onClick={handleLike}>Like</button>
-        </div>
+        </div>)}
       </div>
     </div>
   );

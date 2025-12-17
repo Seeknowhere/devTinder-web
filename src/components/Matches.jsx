@@ -3,6 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addMatches } from "../utils/matchesSlice";
+import { Link } from "react-router-dom";
 
 const Matches = () => {
   const matches = useSelector((store) => store.matches);
@@ -31,7 +32,8 @@ const Matches = () => {
     <div>
       {matches.map((match) => {
         return (
-          <div className="flex flex-row items-center gap-4 bg-base-100 p-2 w-full">
+          <Link to={`chat/${match._id}/`}>
+          <div className="flex flex-row items-center gap-4 bg-base-100 hover:bg-base-300 hover:cursor-pointer p-2 w-full">
             <div className="border-2 border-rose-400 p-1 rounded-4xl">
               <img src={match.photoUrl} className="h-10 w-10 rounded-4xl" />
             </div>
@@ -41,6 +43,8 @@ const Matches = () => {
             </div>
            
           </div>
+          </Link>
+         
         );
       })}
     </div>
