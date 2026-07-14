@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import UserCard from "./userCard";
+import UserCard from "./UserCard";
 import { addUser } from "../utils/userSlice";
 
 const EditProfile = ({ closeEdit }) => {
